@@ -7,17 +7,17 @@ require('dotenv').config();
 
 const app = express();
 
-// Session configuration
+// Session configuration - FIXED MONGO_URL REFERENCE
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'your-session-secret-change-in-production',
+  secret: process.env.SESSION_SECRET || 'fallback-secret-change-in-production',
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({
-    mongoUrl: process.env.MONGO_URI,
+    mongoUrl: process.env.MONGODB_URI || process.env.MONGO_URI,
     ttl: 30 * 60 // 30 minutes
   }),
   cookie: {
-    secure: false,
+    secure: false, // Set to true if using HTTPS
     httpOnly: true,
     maxAge: 30 * 60 * 1000
   }
@@ -27,7 +27,7 @@ app.use(session({
 app.use(cors({
   origin: [
     'http://localhost:5173',
-    'https://your-frontend.onrender.com'
+    'https://your-frontend.onrender.com' // Replace with your actual frontend URL
   ],
   credentials: true
 }));
@@ -72,8 +72,8 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Database connection
-mongoose.connect(process.env.MONGO_URI)
+// Database connection - FIXED TO USE SAME VARIABLE
+mongoose.connect(process.env.MONGODB_URI || process.env.MONGO_URI)
   .then(() => {
     console.log('✅ MongoDB Atlas connected successfully!');
     console.log('📊 Database:', mongoose.connection.db.databaseName);
@@ -83,11 +83,10 @@ mongoose.connect(process.env.MONGO_URI)
     process.exit(1);
   });
 
-// PORT FROM RENDER
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server is running on http://localhost:${PORT}`);
+  console.log(`🚀 Server is running on port ${PORT}`);
 });
 
 // Graceful shutdown
@@ -96,4 +95,3 @@ process.on('SIGINT', async () => {
   console.log('MongoDB connection closed');
   process.exit(0);
 });
-
