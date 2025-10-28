@@ -31,7 +31,7 @@
 // });
 
 // // Database connection
-// mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/todoapp')
+// mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/todoap')
 //   .then(() => {
 //     console.log('✅ MongoDB connected successfully!');
 //     console.log('📊 Database:', mongoose.connection.db.databaseName);
@@ -128,15 +128,17 @@ app.get('/api/health', (req, res) => {
 });
 
 // Database connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/todoapp')
+// Database connection
+mongoose.connect(process.env.MONGO_URI)
   .then(() => {
-    console.log('✅ MongoDB connected successfully!');
+    console.log('✅ MongoDB Atlas connected successfully!');
     console.log('📊 Database:', mongoose.connection.db.databaseName);
   })
   .catch(err => {
     console.error('❌ MongoDB connection error:', err);
     process.exit(1);
   });
+
 
 const PORT = process.env.PORT || 5000;
 
