@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://todo-backend-nzau.onrender.com';
+const API_URL = 'https://todo-backend-nzau.onrender.com/api';
 
 // Create axios instance with timeout
 const api = axios.create({
