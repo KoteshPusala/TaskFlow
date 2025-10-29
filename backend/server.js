@@ -27,7 +27,9 @@ app.use(session({
 app.use(cors({
   origin: [
     'http://localhost:5173',
-    'https://your-frontend.onrender.com' // Replace with your actual frontend URL
+    'https://task-flow-chi-one.vercel.app',
+    'https://task-flow-pusala-koteshs-projects.vercel.app',
+    'https://task-flow-git-main-pusala-koteshs-projects.vercel.app'
   ],
   credentials: true
 }));
