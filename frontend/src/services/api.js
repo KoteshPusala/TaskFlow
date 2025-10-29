@@ -5,7 +5,7 @@ const API_URL = 'https://todo-backend-nzau.onrender.com/api';
 // Create axios instance with timeout
 const api = axios.create({
   baseURL: API_URL,
-  timeout: 8000, // 8 second timeout
+  timeout: 15000, // 8 second timeout
   headers: {
     'Content-Type': 'application/json',
   }
