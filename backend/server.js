@@ -30,6 +30,7 @@ app.use(cors({
     'https://task-flow-chi-one.vercel.app',
     'https://task-flow-pusala-koteshs-projects.vercel.app',
     'https://task-flow-git-main-pusala-koteshs-projects.vercel.app'
+    'https://portfolio-backend-vuui.onrender.com'
   ],
   credentials: true
 }));
